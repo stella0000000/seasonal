@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.5",
-    "@prisma/client": "5.10.2",
+    "@pothos/core": "^3.41.0",
+    "@pothos/plugin-prisma": "^3.64.0",
+    "@prisma/client": "^5.10.2",
     "@types/pg": "^8.11.2",
     "apollo-server-micro": "^3.13.0",
     "graphql": "^16.8.1",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "postcss": "^8",
+    "prisma": "^5.10.2",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },

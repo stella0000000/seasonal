@@ -8,6 +8,8 @@ A simple full stack web application for checking which fruits and vegetables in 
 - Next.js
 - Tailwind
 - GraphQL
+- Yoga (gql server)
+- Pothos (gql schema construction lib)
 - Prisma
 - PostgreSQL
 - Vercel

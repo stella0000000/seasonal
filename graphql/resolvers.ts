@@ -1,10 +1,10 @@
-// // Resolver function for graphql queries.
+// Resolver function for graphql queries.
 
 import prisma from "@/lib/prisma";
 
 export const resolvers = {
   Query: {
-    links: () => {
+    fruits: () => {
       return prisma.fruit.findMany();
     },
   },
