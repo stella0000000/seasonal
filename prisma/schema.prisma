@@ -1,5 +1,3 @@
-// schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,52 +8,52 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-/// Define the Seasons model
-model Seasons {
-  SeasonID    Int     @id @default(autoincrement())
-  SeasonName  String  @unique
-
-  // Define the relation to SeasonalProduce
-  SeasonalProduces SeasonalProduce[]
+// Define the Seasons model
+// One to many relationship
+// One season is associated with many fruits and many vegetetables
+model Season {
+  id           Int       @id @default(autoincrement())
+  name         String    @unique
+  fruits       Fruit[]
+  vegetables   Vegetable[]
 }
 
 // Define the Fruits model
-model Fruits {
-  FruitID     Int     @id @default(autoincrement())
-  FruitName   String  @unique
-
-  // Define the relation to SeasonalProduce
-  SeasonalProduces SeasonalProduce[]
+model Fruit {
+  id           Int       @id @default(autoincrement())
+  name         String
+  season       Season?   @relation(fields: [season_name], references: [name])
+  season_name  String?
 }
 
 // Define the Vegetables model
-model Vegetables {
-  VegetableID Int     @id @default(autoincrement())
-  VegetableName String @unique
-
-  // Define the relation to SeasonalProduce
-  SeasonalProduces SeasonalProduce[]
-}
-
-// Define the SeasonalProduce model
-model SeasonalProduce {
-  SeasonalProduceID Int       @id @default(autoincrement())
-  SeasonID          Int
-  FruitID           Int
-  VegetableID       Int
-
-  // Define the relations to other models
-  Season            Seasons   @relation(fields: [SeasonID], references: [SeasonID])
-  Fruit             Fruits    @relation(fields: [FruitID], references: [FruitID])
-  Vegetable         Vegetables @relation(fields: [VegetableID], references: [VegetableID])
-
-  // Define foreign key constraints
-  @@index([SeasonID], name: "idx_season_id")
-  @@index([FruitID], name: "idx_fruit_id")
-  @@index([VegetableID], name: "idx_vegetable_id")
+model Vegetable {
+  id           Int       @id @default(autoincrement())
+  name         String
+  season       Season?   @relation(fields: [season_name], references: [name])
+  season_name  String?
 }
 
 
+
+// model Post {
+//   id        String     @default(cuid()) @id
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User?   @relation(fields: [authorId], references: [id])
+//   authorId  String?
+// }
+
+// model User {
+//   id            String       @default(cuid()) @id
+//   name          String?
+//   email         String?   @unique
+//   createdAt     DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+//   posts         Post[]
+//   @@map(name: "users")
+// }
 // model Post {
 //   id        String     @default(cuid()) @id
 //   title     String
