@@ -2,8 +2,8 @@ import { Produces } from "@/types/types";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 export interface ProduceContextType {
-  produceType: Produces;
-  setProduceType: React.Dispatch<React.SetStateAction<Produces>>;
+  produceType: Produces | undefined;
+  setProduceType: React.Dispatch<React.SetStateAction<Produces | undefined>>;
 }
 
 type ProviderProps = {
@@ -16,7 +16,9 @@ const ProduceContext = createContext<ProduceContextType | undefined>(undefined);
 export const ProduceContextProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [produceType, setProduceType] = useState<Produces>(Produces.FRUITS);
+  const [produceType, setProduceType] = useState<Produces | undefined>(
+    undefined
+  );
 
   return (
     <ProduceContext.Provider value={{ produceType, setProduceType }}>

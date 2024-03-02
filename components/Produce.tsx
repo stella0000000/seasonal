@@ -5,7 +5,7 @@ import { Produces, Seasons } from "@/types/types";
 import { useProduceContext } from "@/app/context";
 
 interface ProducePropsTypes {
-  season?: Seasons;
+  season: Seasons | undefined;
 }
 
 const FRUITS_BY_SEASON = gql`
@@ -33,6 +33,11 @@ const queryMap = {
   [Produces.VEGETABLES]: VEGETABLES_BY_SEASON,
 };
 
+const capitalize = (word: string) => {
+  const firstLetter = word[0].toUpperCase();
+  return firstLetter + word.slice(1);
+};
+
 export const Produce: React.FC<ProducePropsTypes> = (
   props: ProducePropsTypes
 ) => {
@@ -44,12 +49,12 @@ export const Produce: React.FC<ProducePropsTypes> = (
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  const produceItems = data[`${produceType.toLowerCase()}BySeason`];
+  const produceItems = data[`${produceType!.toLowerCase()}BySeason`];
 
   return (
     <ul>
       {produceItems.map((item: Fruit | Vegetable) => (
-        <li key={item.id}>{item.name}</li>
+        <li key={item.id}>{capitalize(item.name)}</li>
       ))}
     </ul>
   );

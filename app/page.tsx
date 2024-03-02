@@ -17,7 +17,11 @@ export default function Home() {
   return (
     <ApolloProvider client={client}>
       <ProduceContextProvider>
-        <main className="flex min-h-screen flex-col p-10">
+        <main className="flex min-h-screen flex-col p-2">
+          <div className="fixed right-0 transform rotate-90 flex justify-center items-center h-screen mr-[-30px]">
+            <h1 className="text-4xl">Seasonal</h1>
+          </div>
+
           <div className="flex gap-x-10">
             <ProduceButton {...{ label: Produces.FRUITS }} />
             <ProduceButton {...{ label: Produces.VEGETABLES }} />

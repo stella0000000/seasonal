@@ -1,7 +1,7 @@
 import { useQuery, gql } from "@apollo/client";
 import { Fruit } from "@prisma/client";
 
-const AllFruitsQuery = gql`
+const ALL_FRUITS_QUERY = gql`
   query {
     fruits {
       id
@@ -12,7 +12,7 @@ const AllFruitsQuery = gql`
 `;
 
 function Fruits() {
-  const { loading, error, data } = useQuery(AllFruitsQuery);
+  const { loading, error, data } = useQuery(ALL_FRUITS_QUERY);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

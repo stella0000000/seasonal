@@ -15,7 +15,10 @@ export const ProduceButton: React.FC<ProduceButtonTypes> = ({ label }) => {
   const buttonColor = produceType === label ? "text-[#c7ff2d]" : "text-black";
 
   return (
-    <button className={buttonColor} onClick={handleClick}>
+    <button
+      className={`${buttonColor} hover:text-[#c7ff2d]`}
+      onClick={handleClick}
+    >
       {label}
     </button>
   );
