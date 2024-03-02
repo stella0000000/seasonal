@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 210, 202, 189;
+  --background-end-rgb: 210, 202, 189;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,4 +37,8 @@ button {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+::selection {
+  background: rgb(255, 0, 157);
 }

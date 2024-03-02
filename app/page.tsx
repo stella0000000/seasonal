@@ -39,6 +39,8 @@ export default function Home() {
           <Link
             className="fixed bottom-0 right-0 p-2 text-sm cursor-default not-italic"
             href="https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             Data provided by USDA 🌱
           </Link>
