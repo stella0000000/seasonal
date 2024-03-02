@@ -1,6 +1,6 @@
 ## Seasonal
 
-A simple full stack web application for checking which fruits and vegetables in season.
+A full stack web application for checking which fruits and vegetables in season.
 
 ## Technologies
 
@@ -8,12 +8,14 @@ A simple full stack web application for checking which fruits and vegetables in 
 - Next.js
 - Tailwind
 - GraphQL
-- Yoga (gql server)
-- Pothos (gql schema construction lib)
 - Prisma
 - PostgreSQL
 - Vercel
 
+## Ongoing
+
+- Create, Update, Delete produce
+
 ## References
 
-Seasonal fruit and vegetable data from the [USDA](https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide).
+Seasonal fruit and vegetable data provided by the [USDA](https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide).

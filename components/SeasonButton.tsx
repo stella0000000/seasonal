@@ -22,7 +22,7 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
 
   return (
     <button
-      className={`${buttonColor} ${!produceType && "opacity-50"} ${
+      className={`${buttonColor} ${!produceType && "opacity-30"} ${
         !produceType ? "" : "hover:text-[#c7ff2d]"
       }`}
       onClick={handleClick}

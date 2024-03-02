@@ -1,22 +1,23 @@
 // Create a GraphQL Yoga server instance
 // specified path for GraphQL API with graphqlEndpoint property
 
-import { createYoga } from "graphql-yoga";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { schema } from "@/graphql/schema";
+// Next.js Custom Route Handler: https://nextjs.org/docs/app/building-your-application/routing/router-handlers
 
-const yoga = createYoga<{
-  req: NextApiRequest;
-  res: NextApiResponse;
-}>({
+import { schema } from "@/graphql/schema";
+import { createYoga } from "graphql-yoga";
+
+const { handleRequest } = createYoga({
   schema,
+
+  // While using Next.js file convention for routing, we need to configure Yoga to use the correct endpoint
   graphqlEndpoint: "/api/graphql",
+
+  // Yoga needs to know how to create a valid Next response
+  fetchAPI: { Response },
 });
 
-export { yoga as GET, yoga as POST };
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
+export {
+  handleRequest as GET,
+  handleRequest as POST,
+  handleRequest as OPTIONS,
 };
