@@ -4,10 +4,10 @@ import { ApolloProvider } from "@apollo/client";
 import { createApolloClient } from "@/lib/apollo";
 import { useState } from "react";
 import { ProduceContextProvider } from "./context";
-import { Seasons } from "@/types/types";
+import { Seasons, Produces } from "@/types/types";
 import { ProduceButton } from "@/components/ProduceButton";
-import Fruits from "@/components/Fruits";
 import { Produce } from "@/components/Produce";
+import SeasonButton from "@/components/SeasonButton";
 
 const client = createApolloClient();
 
@@ -18,13 +18,17 @@ export default function Home() {
     <ApolloProvider client={client}>
       <ProduceContextProvider>
         <main className="flex min-h-screen flex-col p-10">
-          <button onClick={() => setSeason(Seasons.SPRING)}>Spring</button>
-          <button onClick={() => setSeason(Seasons.SUMMER)}>Summer</button>
-          {/* <button onClick={() => setSeason(Seasons.FALL)}>Fall</button>
-          <button onClick={() => setSeason(Seasons.WINTER)}>Winter</button> */}
-          <Produce {...{ season }} />
-          <ProduceButton />
-          {/* <Fruits /> */}
+          <div className="flex gap-x-10">
+            <ProduceButton {...{ label: Produces.FRUITS }} />
+            <ProduceButton {...{ label: Produces.VEGETABLES }} />
+          </div>
+          <div className="flex gap-x-10">
+            <SeasonButton {...{ season, setSeason, label: Seasons.SPRING }} />
+            <SeasonButton {...{ season, setSeason, label: Seasons.SUMMER }} />
+            <SeasonButton {...{ season, setSeason, label: Seasons.FALL }} />
+            <SeasonButton {...{ season, setSeason, label: Seasons.WINTER }} />
+          </div>
+          {season && <Produce {...{ season }} />}
         </main>
       </ProduceContextProvider>
     </ApolloProvider>

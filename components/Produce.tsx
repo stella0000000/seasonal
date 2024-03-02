@@ -1,13 +1,14 @@
 import { gql, useQuery } from "@apollo/client";
-import type { Fruit } from "@prisma/client";
-import { Seasons } from "@/types/types";
+import type { Fruit, Vegetable } from "@prisma/client";
+import { Produces, Seasons } from "@/types/types";
+
 import { useProduceContext } from "@/app/context";
 
 interface ProducePropsTypes {
   season?: Seasons;
 }
 
-const FruitsBySeasonQuery = gql`
+const FRUITS_BY_SEASON = gql`
   query FruitsBySeason($season: String!) {
     fruitsBySeason(season: $season) {
       id
@@ -17,28 +18,39 @@ const FruitsBySeasonQuery = gql`
   }
 `;
 
+const VEGETABLES_BY_SEASON = gql`
+  query VegetablesBySeason($season: String!) {
+    vegetablesBySeason(season: $season) {
+      id
+      name
+      season_name
+    }
+  }
+`;
+
+const queryMap = {
+  [Produces.FRUITS]: FRUITS_BY_SEASON,
+  [Produces.VEGETABLES]: VEGETABLES_BY_SEASON,
+};
+
 export const Produce: React.FC<ProducePropsTypes> = (
   props: ProducePropsTypes
 ) => {
-  const { produceType, setProduceType } = useProduceContext();
+  const { produceType } = useProduceContext();
   const { season } = props;
-  const { loading, error, data } = useQuery(FruitsBySeasonQuery, {
+  const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
     variables: { season: season?.toLowerCase() },
   });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  const produceItems = data[`${produceType.toLowerCase()}BySeason`];
 
   return (
-    <>
-      <div>
-        {produceType} for {season}
-      </div>
-      <ul>
-        {data.fruitsBySeason.map((fruit: Fruit) => (
-          <li key={fruit.id}>{fruit.name}</li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {produceItems.map((item: Fruit | Vegetable) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+    </ul>
   );
 };

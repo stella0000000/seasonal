@@ -1,13 +1,9 @@
+import { Produces } from "@/types/types";
 import { ReactNode, createContext, useContext, useState } from "react";
 
-export enum ProduceType {
-  FRUIT = "FRUIT",
-  VEGETABLE = "VEGETABLE",
-}
-
 export interface ProduceContextType {
-  produceType: ProduceType;
-  setProduceType: React.Dispatch<React.SetStateAction<ProduceType>>;
+  produceType: Produces;
+  setProduceType: React.Dispatch<React.SetStateAction<Produces>>;
 }
 
 type ProviderProps = {
@@ -20,9 +16,7 @@ const ProduceContext = createContext<ProduceContextType | undefined>(undefined);
 export const ProduceContextProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [produceType, setProduceType] = useState<ProduceType>(
-    ProduceType.FRUIT
-  );
+  const [produceType, setProduceType] = useState<Produces>(Produces.FRUITS);
 
   return (
     <ProduceContext.Provider value={{ produceType, setProduceType }}>

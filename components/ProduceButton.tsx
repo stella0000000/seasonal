@@ -1,20 +1,24 @@
-import { ProduceType, useProduceContext } from "@/app/context";
+import { Produces } from "@/types/types";
+import { useProduceContext } from "@/app/context";
 
-export const ProduceButton: React.FC = () => {
+interface ProduceButtonTypes {
+  label: Produces;
+}
+
+export const ProduceButton: React.FC<ProduceButtonTypes> = ({ label }) => {
   const { produceType, setProduceType } = useProduceContext();
 
+  const handleClick = () => {
+    setProduceType(label);
+  };
+
+  const buttonColor = produceType === label ? "text-[#c7ff2d]" : "text-black";
+
   return (
-    <button
-      className="text-[fuchsia]"
-      onClick={() =>
-        setProduceType(
-          produceType === ProduceType.FRUIT
-            ? ProduceType.VEGETABLE
-            : ProduceType.FRUIT
-        )
-      }
-    >
-      {produceType}S
+    <button className={buttonColor} onClick={handleClick}>
+      {label}
     </button>
   );
 };
+
+export default ProduceButton;

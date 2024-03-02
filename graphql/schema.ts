@@ -6,7 +6,7 @@ import { builder } from "./builder";
 
 export const schema = builder.toSchema();
 
-// Define structure of fruit object
+// Defines the structure of a fruit object
 // and a query to return all fruits.
 
 // export const typeDefs = `

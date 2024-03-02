@@ -1,6 +1,11 @@
 export enum Seasons {
-  SPRING = "SPRING",
-  SUMMER = "SUMMER",
-  FALL = "FALL",
-  WINTER = "WINTER",
+  SPRING = "Spring",
+  SUMMER = "Summer",
+  FALL = "Fall",
+  WINTER = "Winter",
+}
+
+export enum Produces {
+  FRUITS = "Fruits",
+  VEGETABLES = "Vegetables",
 }
