@@ -35,7 +35,7 @@ const queryMap = {
 
 const capitalize = (word: string) => {
   const firstLetter = word[0].toUpperCase();
-  return firstLetter + word.slice(1);
+  return firstLetter + word.substring(1);
 };
 
 export const Produce: React.FC<ProducePropsTypes> = (
@@ -46,13 +46,15 @@ export const Produce: React.FC<ProducePropsTypes> = (
   const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
     variables: { season: season?.toLowerCase() },
   });
+  const centeredStyle =
+    "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center";
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) return <div className={centeredStyle}>...</div>;
+  if (error) return <div className={centeredStyle}>Error: {error.message}</div>;
   const produceItems = data[`${produceType!.toLowerCase()}BySeason`];
 
   return (
-    <ul>
+    <ul className={centeredStyle}>
       {produceItems.map((item: Fruit | Vegetable) => (
         <li key={item.id}>{capitalize(item.name)}</li>
       ))}

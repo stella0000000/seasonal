@@ -29,6 +29,7 @@ model Fruit {
   name         String
   season       Season?   @relation(fields: [season_name], references: [name])
   season_name  String?
+  // description  String?
 }
 
 // Define the Vegetables model
@@ -37,6 +38,7 @@ model Vegetable {
   name         String
   season       Season?   @relation(fields: [season_name], references: [name])
   season_name  String?
+  // description  String?
 }
 
 
