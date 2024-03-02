@@ -7,7 +7,6 @@ builder.prismaObject("Fruit", {
     id: t.exposeID("id"),
     name: t.exposeString("name", { nullable: true }),
     season_name: t.exposeString("season_name", { nullable: true }),
-    // users: t.relation('users')
   }),
 });
 
@@ -16,5 +15,20 @@ builder.queryField("fruits", (t) =>
     type: ["Fruit"],
     resolve: (query, _parent, _args, _ctx, _info) =>
       (prisma as PrismaClient).fruit.findMany({ ...query }),
+  })
+);
+
+builder.queryField("fruitsBySeason", (t) =>
+  t.prismaField({
+    type: ["Fruit"],
+    args: {
+      season: t.arg.string({ required: true }),
+    },
+    resolve: (query, _parent, _args, _ctx, _info) =>
+      (prisma as PrismaClient).fruit.findMany({
+        where: {
+          season_name: _args.season,
+        },
+      }),
   })
 );

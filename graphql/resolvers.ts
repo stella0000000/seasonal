@@ -7,6 +7,25 @@ export const resolvers = {
     fruits: () => {
       return prisma.fruit.findMany();
     },
+    fruitsBySeason: ({ season }: any) => {
+      // console.log("graphql/resolvers.ts");
+      // console.log({ season });
+      return prisma.fruit.findMany({
+        where: {
+          season_name: season,
+        },
+      });
+    },
+    vegetables: () => {
+      return prisma.vegetable.findMany();
+    },
+    vegetablesBySeason: ({ season }: any) => {
+      return prisma.vegetable.findMany({
+        where: {
+          season_name: season,
+        },
+      });
+    },
   },
 };
 

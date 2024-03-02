@@ -1,27 +1,30 @@
-// Server components don't support creating or consuming context directly
-// Wrap provider in Client Component with directive
 "use client";
 
 import { ApolloProvider } from "@apollo/client";
 import { createApolloClient } from "@/lib/apollo";
-
-import { ProduceButton } from "@/components/ProduceButton";
+import { useState } from "react";
 import { ProduceContextProvider } from "./context";
+import { Seasons } from "@/types/types";
+import { ProduceButton } from "@/components/ProduceButton";
 import Fruits from "@/components/Fruits";
+import { Produce } from "@/components/Produce";
 
 const client = createApolloClient();
 
 export default function Home() {
+  const [season, setSeason] = useState<Seasons | undefined>(undefined);
+
   return (
     <ApolloProvider client={client}>
       <ProduceContextProvider>
         <main className="flex min-h-screen flex-col p-10">
-          <div>spring</div>
-          <div>summer</div>
-          <div>fall</div>
-          <div>winter</div>
+          <button onClick={() => setSeason(Seasons.SPRING)}>Spring</button>
+          <button onClick={() => setSeason(Seasons.SUMMER)}>Summer</button>
+          {/* <button onClick={() => setSeason(Seasons.FALL)}>Fall</button>
+          <button onClick={() => setSeason(Seasons.WINTER)}>Winter</button> */}
+          <Produce {...{ season }} />
           <ProduceButton />
-          <Fruits />
+          {/* <Fruits /> */}
         </main>
       </ProduceContextProvider>
     </ApolloProvider>

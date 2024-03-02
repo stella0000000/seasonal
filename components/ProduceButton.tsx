@@ -5,6 +5,7 @@ export const ProduceButton: React.FC = () => {
 
   return (
     <button
+      className="text-[fuchsia]"
       onClick={() =>
         setProduceType(
           produceType === ProduceType.FRUIT
@@ -13,7 +14,7 @@ export const ProduceButton: React.FC = () => {
         )
       }
     >
-      look @ {produceType}S
+      {produceType}S
     </button>
   );
 };
