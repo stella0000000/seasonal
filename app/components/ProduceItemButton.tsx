@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
 import { producePrompt } from "../helpers/constants/produce-prompt";
+// import { cn } from "../lib/utils";
 
 interface ProduceItemButtonPropsTypes {
   label: string;
@@ -8,6 +9,16 @@ interface ProduceItemButtonPropsTypes {
   setSelectedProduce: (selectedProduce: string) => void;
   setDescription: (text: string) => void;
 }
+
+/*
+descriptions = [
+  {
+    id: 1, from nanoid,
+    text: "blah blah blah"
+  }
+]
+
+*/
 
 export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   label,
@@ -68,6 +79,10 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   return (
     <button
       className={`${buttonColor} hover:text-[#c7ff2d]`}
+      // className={cn("hover:text-[#c7ff2d]", {
+      //   "text-[#c7ff2d]": selectedProduce === label,
+      //   "text-black": selectedProduce !== label,
+      // })}
       onClick={handleClick}
     >
       {label}

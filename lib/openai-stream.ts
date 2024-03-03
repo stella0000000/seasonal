@@ -31,7 +31,7 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
+      Authorization: `Bearer ${process.env.PUBLIC_NEXT_OPENAI_API_KEY ?? ""}`,
     },
     method: "POST",
     body: JSON.stringify(payload),
@@ -44,14 +44,14 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
         if (event.type === "event") {
           const data = event.data;
           // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
-          console.log({ data });
+          // console.log({ data });
           if (data === "[DONE]") {
             controller.close();
             return;
           }
           try {
             const json = JSON.parse(data);
-            console.log({ json });
+            // console.log({ json });
             const text = json.choices[0].delta?.content || "";
             if (counter < 2 && (text.match(/\n/) || []).length) {
               // this is a prefix character (i.e., "\n\n"), do nothing
