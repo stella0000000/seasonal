@@ -1,11 +1,11 @@
 import { ReactNode, createContext, useState } from "react";
 
-interface Description {
+export interface Description {
   id: string;
   text: string;
 }
 
-export const DescriptionContext = createContext<{
+export const DescriptionsContext = createContext<{
   descriptions: Description[];
   isDescriptionUpdating: boolean;
   // description from openai
@@ -56,7 +56,7 @@ export function DescriptionsProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <DescriptionContext.Provider
+    <DescriptionsContext.Provider
       value={{
         descriptions,
         addDescription,
@@ -67,6 +67,6 @@ export function DescriptionsProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </DescriptionContext.Provider>
+    </DescriptionsContext.Provider>
   );
 }

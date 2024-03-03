@@ -8,8 +8,8 @@ interface ProduceNavPropsTypes {
 export function ProduceNav({ setDescription }: ProduceNavPropsTypes) {
   return (
     <div className="flex gap-x-10">
-      {Object.values(Produces).map((produce) => (
-        <ProduceButton key={produce} label={produce} {...{ setDescription }} />
+      {Object.values(Produces).map((produce, idx) => (
+        <ProduceButton key={idx} value={produce} {...{ setDescription }} />
       ))}
     </div>
   );

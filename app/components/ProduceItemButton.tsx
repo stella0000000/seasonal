@@ -1,10 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { producePrompt } from "../helpers/constants/produce-prompt";
+import { Description, DescriptionsContext } from "../context/description";
+import { Seasons } from "@/types/types";
 // import { cn } from "../lib/utils";
 
 interface ProduceItemButtonPropsTypes {
-  label: string;
+  value: string;
+  season: Seasons | null;
   selectedProduce: string | null;
   setSelectedProduce: (selectedProduce: string) => void;
   setDescription: (text: string) => void;
@@ -21,31 +24,63 @@ descriptions = [
 */
 
 export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
-  label,
+  value,
+  season,
   selectedProduce,
   setSelectedProduce,
   setDescription,
 }) => {
-  const prompt = producePrompt(label);
+  const prompt = producePrompt(value);
+  const {
+    descriptions,
+    addDescription,
+    removeDescription,
+    updateDescription,
+    setIsDescriptionUpdating,
+  } = useContext(DescriptionsContext);
 
-  // const { mutate: sendPrompt, isLoading } = useMutation({
-  //   mutationFn: async () => {
-  //     const response = await fetch("/api/openai", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         prompt,
-  //       }),
-  //       onSuccess: () => {
-  //         console.log("success useMutation");
-  //       },
-  //     });
+  const { mutate: sendPrompt, isPending } = useMutation({
+    mutationFn: async (description: string) => {
+      const response = await fetch("/api/openai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+        }),
+      });
 
-  //     return response.body;
-  //   },
-  // });
+      return response.body;
+    },
+    onSuccess: async (stream) => {
+      if (!stream) throw new Error("No stream found.");
+
+      const id = `${season}-${value}`; // SEASON-PRODUCE
+      const responseDescription: Description = {
+        id,
+        text: "",
+      };
+
+      addDescription(responseDescription);
+      setIsDescriptionUpdating(true);
+      console.log(" hey");
+      const reader = stream.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        console.log({ chunkValue });
+        updateDescription(id, (prev) => prev + chunkValue);
+      }
+
+      // clean up
+      setIsDescriptionUpdating(false);
+    },
+  });
 
   const generateText = async () => {
     try {
@@ -61,7 +96,7 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
 
       if (!response.ok) throw new Error("Failed to fetch data");
       const data = await response.text();
-      console.log({ data });
+      // console.log({ data });
       setDescription(data);
     } catch (error) {
       console.error(error);
@@ -69,23 +104,24 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   };
 
   const handleClick = () => {
-    setSelectedProduce(label);
+    setDescription("");
+    setSelectedProduce(value);
     generateText();
   };
 
   const buttonColor =
-    selectedProduce === label ? "text-[#c7ff2d]" : "text-black";
+    selectedProduce === value ? "text-[#c7ff2d]" : "text-black";
 
   return (
     <button
       className={`${buttonColor} hover:text-[#c7ff2d]`}
       // className={cn("hover:text-[#c7ff2d]", {
-      //   "text-[#c7ff2d]": selectedProduce === label,
-      //   "text-black": selectedProduce !== label,
+      //   "text-[#c7ff2d]": selectedProduce === value,
+      //   "text-black": selectedProduce !== value,
       // })}
       onClick={handleClick}
     >
-      {label}
+      {value}
     </button>
   );
 };

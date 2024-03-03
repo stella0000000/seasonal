@@ -14,10 +14,10 @@ export function SeasonNav({
 }: SeasonNavPropsTypes) {
   return (
     <div className="flex gap-x-10">
-      {Object.values(Seasons).map((seasonItem) => (
+      {Object.values(Seasons).map((seasonItem, idx) => (
         <SeasonButton
-          key={seasonItem}
-          label={seasonItem}
+          key={idx}
+          value={seasonItem}
           {...{ season, setSeason, setDescription }}
         />
       ))}

@@ -2,14 +2,14 @@ import { useProduceContext } from "@/app/context/produce";
 import { Seasons } from "@/types/types";
 
 interface SeasonButtonProps {
-  label: string;
+  value: string;
   season: Seasons | null;
   setSeason: (season: Seasons) => void;
   setDescription: (description: string | null) => void;
 }
 
 const SeasonButton: React.FC<SeasonButtonProps> = ({
-  label,
+  value,
   season,
   setSeason,
   setDescription,
@@ -17,11 +17,11 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
   const { produceType } = useProduceContext();
 
   const handleClick = () => {
-    setSeason(label as Seasons);
+    setSeason(value as Seasons);
     setDescription(null);
   };
 
-  const buttonColor = season === label ? "text-[#c7ff2d]" : "text-black";
+  const buttonColor = season === value ? "text-[#c7ff2d]" : "text-black";
 
   return (
     <button
@@ -31,7 +31,7 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
       onClick={handleClick}
       disabled={!produceType}
     >
-      {label}
+      {value}
     </button>
   );
 };

@@ -65,8 +65,8 @@ export const Produce: React.FC<ProducePropsTypes> = ({
       {produceItems.map((item: Fruit | Vegetable) => (
         <li key={item.id}>
           <ProduceItemButton
-            label={capitalize(item.name)}
-            {...{ selectedProduce, setSelectedProduce, setDescription }}
+            value={capitalize(item.name)}
+            {...{ season, selectedProduce, setSelectedProduce, setDescription }}
           />
         </li>
       ))}
