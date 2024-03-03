@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Newsreader } from "next/font/google";
 import "./globals.css";
-import { Loading } from "@/components/Loading";
+import { Loading } from "@/app/components/Loading";
 
 const font = Newsreader({
   subsets: ["latin"],

@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
+import { producePrompt } from "../helpers/constants/produce-prompt";
 
 interface ProduceItemButtonPropsTypes {
   label: string;
@@ -14,6 +15,8 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   setSelectedProduce,
   setDescription,
 }) => {
+  const prompt = producePrompt(label);
+
   // const { mutate: sendPrompt, isLoading } = useMutation({
   //   mutationFn: async () => {
   //     const response = await fetch("/api/openai", {
@@ -22,7 +25,7 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   //         "Content-Type": "application/json",
   //       },
   //       body: JSON.stringify({
-  //         prompt: `Tell me exactly 3 interesting sentences about ${label} in paragraph format. Tell me how many calories are in ${label} in exactly 1 sentence. Give me exactly 2 sentences describing its nutritional value. Give me exactly 1 thing I can make with ${label}. Finally, write PS: and give me 1 kid friendly, and funny ${label} pun, and add Haha! at the end.`,
+  //         prompt,
   //       }),
   //       onSuccess: () => {
   //         console.log("success useMutation");
@@ -41,7 +44,7 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          prompt: `Tell me exactly 3 interesting sentences about ${label} in paragraph format. Tell me how many calories are in ${label} in exactly 1 sentence. Give me exactly 2 sentences describing its nutritional value. Give me exactly 1 thing I can make with ${label}. Finally, write PS: and give me 1 kid friendly, and funny ${label} pun, and add Haha! at the end.`,
+          prompt,
         }),
       });
 

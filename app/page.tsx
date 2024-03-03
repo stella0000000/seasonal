@@ -5,12 +5,12 @@ import { ApolloProvider } from "@apollo/client";
 import { createApolloClient } from "@/lib/apollo";
 import { Seasons } from "@/types/types";
 import { ProduceContextProvider } from "./context/produce";
-import { Produce } from "@/components/Produce";
-import Description from "@/components/Description";
-import { Footer } from "@/components/Footer";
-import { ProduceNav } from "@/components/ProduceNav";
-import { SeasonNav } from "@/components/SeasonNav";
-import Providers from "@/components/Providers";
+import { Produce } from "@/app/components/Produce";
+import Description from "@/app/components/Description";
+import { Footer } from "@/app/components/Footer";
+import { ProduceNav } from "@/app/components/ProduceNav";
+import { SeasonNav } from "@/app/components/SeasonNav";
+import Providers from "@/app/components/Providers";
 // import Photo from "@/components/Photo";
 
 const client = createApolloClient();
@@ -44,7 +44,12 @@ export default function Home() {
 }
 
 // readable stream
-// loading state / suspense
+// define Description interface
+// loading state / useMutation
 // caching for previous requests?
+
+// get rid of description useState?
+// fix providers
+
 // fix error handling
 // fix types
