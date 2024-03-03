@@ -2,10 +2,14 @@ import { gql, useQuery } from "@apollo/client";
 import type { Fruit, Vegetable } from "@prisma/client";
 import { Produces, Seasons } from "@/types/types";
 
-import { useProduceContext } from "@/app/context";
+import { useProduceContext } from "@/app/context/produce";
+import ProduceItemButton from "./ProduceItemButton";
+import { useState } from "react";
+import Loading from "./Loading";
 
 interface ProducePropsTypes {
-  season: Seasons | undefined;
+  season: Seasons | null;
+  setDescription: (description: string) => void;
 }
 
 const FRUITS_BY_SEASON = gql`
@@ -38,25 +42,33 @@ const capitalize = (word: string) => {
   return firstLetter + word.substring(1);
 };
 
-export const Produce: React.FC<ProducePropsTypes> = (
-  props: ProducePropsTypes
-) => {
+export const Produce: React.FC<ProducePropsTypes> = ({
+  season,
+  setDescription,
+}: ProducePropsTypes) => {
   const { produceType } = useProduceContext();
-  const { season } = props;
+  const [selectedProduce, setSelectedProduce] = useState<string | null>(null);
+
   const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
     variables: { season: season?.toLowerCase() },
   });
-  const centeredStyle =
-    "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center";
 
-  if (loading) return <div className={centeredStyle}>...</div>;
-  if (error) return <div className={centeredStyle}>Error: {error.message}</div>;
+  const style = "mt-20";
+
+  // if (loading) return <div className={style}>...</div>;
+  if (loading) return <Loading />;
+  if (error) return <div className={style}>Error: {error.message}</div>;
   const produceItems = data[`${produceType!.toLowerCase()}BySeason`];
 
   return (
-    <ul className={centeredStyle}>
+    <ul className={style}>
       {produceItems.map((item: Fruit | Vegetable) => (
-        <li key={item.id}>{capitalize(item.name)}</li>
+        <li key={item.id}>
+          <ProduceItemButton
+            label={capitalize(item.name)}
+            {...{ selectedProduce, setSelectedProduce, setDescription }}
+          />
+        </li>
       ))}
     </ul>
   );

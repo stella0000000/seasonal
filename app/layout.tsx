@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import { Newsreader, Open_Sans } from "next/font/google";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
+import { Loading } from "@/components/Loading";
 
 const font = Newsreader({
   subsets: ["latin"],

@@ -1,6 +1,12 @@
 ## Seasonal
 
-A full stack web application for checking which fruits and vegetables in season.
+- A full stack web application for checking which fruits and vegetables in season.
+
+## Features
+
+- Fruits and vegetables.
+- Descriptions including nutritional value, recipes, etc.
+- Berry funny puns 🙃.
 
 ## Technologies
 
@@ -10,11 +16,12 @@ A full stack web application for checking which fruits and vegetables in season.
 - GraphQL
 - Prisma
 - PostgreSQL
+- OpenAI API
 - Vercel
 
 ## Ongoing
 
-- Create, Update, Delete produce
+- Auth + create/update/delete produce (allergies, local produce, etc)
 
 ## References
 

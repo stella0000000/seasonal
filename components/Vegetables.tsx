@@ -1,5 +1,9 @@
+// this component is moot
+// it was written for testing purposes
+
 import { useQuery, gql } from "@apollo/client";
 import { Vegetable } from "@prisma/client";
+import Loading from "./Loading";
 
 const AllVegetablesQuery = gql`
   query {
@@ -14,7 +18,7 @@ const AllVegetablesQuery = gql`
 function Vegetables() {
   const { loading, error, data } = useQuery(AllVegetablesQuery);
 
-  if (loading) return <p>...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (

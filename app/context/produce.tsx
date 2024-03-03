@@ -2,23 +2,21 @@ import { Produces } from "@/types/types";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 export interface ProduceContextType {
-  produceType: Produces | undefined;
-  setProduceType: React.Dispatch<React.SetStateAction<Produces | undefined>>;
+  produceType: Produces | null;
+  setProduceType: React.Dispatch<React.SetStateAction<Produces | null>>;
 }
 
 type ProviderProps = {
   children: ReactNode;
 };
 
-const ProduceContext = createContext<ProduceContextType | undefined>(undefined);
+const ProduceContext = createContext<ProduceContextType | null>(null);
 
 // ProduceContextProvider
 export const ProduceContextProvider: React.FC<ProviderProps> = ({
   children,
 }) => {
-  const [produceType, setProduceType] = useState<Produces | undefined>(
-    undefined
-  );
+  const [produceType, setProduceType] = useState<Produces | null>(null);
 
   return (
     <ProduceContext.Provider value={{ produceType, setProduceType }}>

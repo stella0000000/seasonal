@@ -8,8 +8,6 @@ export const resolvers = {
       return prisma.fruit.findMany();
     },
     fruitsBySeason: ({ season }: any) => {
-      // console.log("graphql/resolvers.ts");
-      // console.log({ season });
       return prisma.fruit.findMany({
         where: {
           season_name: season,
