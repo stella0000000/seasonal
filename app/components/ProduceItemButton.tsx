@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import { producePrompt } from "../helpers/constants/produce-prompt";
 import { DescriptionsContext } from "../context/description";
 import { Seasons } from "@/types/types";
@@ -43,18 +43,35 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
+      if (!response.ok) throw new Error("Failed to fetch data");
 
-      return await response.text();
+      return response.body;
     },
     onError: () => {
       toast.error("Something went wrong. Please try again.");
     },
-    onSuccess: (data) => {
-      addDescription(id, data);
+    onSuccess: async (stream) => {
+      if (!stream) throw new Error("No stream.");
+
+      setIsDescriptionUpdating(true);
+
+      const reader = stream.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunk = decoder.decode(value);
+        updateDescription(id, (prevText) => {
+          console.log({ prevText, chunk });
+          return prevText + chunk;
+        });
+      }
+
+      setIsDescriptionUpdating(false);
       setSelectedProduce(value);
+      // addDescription(id, description); // Add full description to context
     },
     onMutate: () => {
       setIsDescriptionUpdating(true);
@@ -67,7 +84,9 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   const handleClick = () => {
     setDescription("");
     setSelectedProduce(value);
-    if (!descriptions[id]) mutate();
+    if (!descriptions[id]) {
+      mutate();
+    }
   };
 
   const buttonColor =

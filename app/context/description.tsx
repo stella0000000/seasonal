@@ -46,9 +46,8 @@ export function DescriptionsProvider({ children }: { children: ReactNode }) {
     updateFn: (prevText: string) => string
   ) => {
     setDescriptions((prev) => {
-      // console.log({ prev });
-      console.log(prev[id]);
-      return { ...prev, [id]: updateFn(prev.id) };
+      const currentText = prev[id] || ""; // Get the current description text or an empty string if it doesn't exist
+      return { ...prev, [id]: updateFn(currentText) }; // Pass the current text to updateFn
     });
   };
 

@@ -8,7 +8,7 @@ const Photo = () => {
       n: 1,
       size: "1024x1024",
     });
-    console.log({ response });
+    // console.log({ response });
   };
 
   return <button onClick={generatePhoto}>gen Photo</button>;

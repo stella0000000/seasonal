@@ -23,7 +23,7 @@ const Description: React.FC<DescriptionPropsTypes> = ({
   const style =
     "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center whitespace-pre-line";
 
-  return descriptions[id] && <p className={style}>{`${descriptions[id]}`}</p>;
+  return descriptions[id] && <p className={style}>{descriptions[id]}</p>;
 };
 
 export default Description;
