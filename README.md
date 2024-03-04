@@ -2,7 +2,7 @@
 
 - A full stack web application for checking which fruits and vegetables in season.
   
-<img width="600" alt="seasonal" src="https://github.com/stella0000000/seasonal/assets/112890821/952420c1-aeea-4e2c-89f4-7ca0f4807427">
+<img width="700" alt="seasonal" src="https://github.com/stella0000000/seasonal/assets/112890821/952420c1-aeea-4e2c-89f4-7ca0f4807427">
 
 ## Features
 
