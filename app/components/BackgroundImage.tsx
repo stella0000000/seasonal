@@ -7,7 +7,8 @@ const BackgroundImage = () => {
       <Image
         className="fixed top-0 right-0 z-[-1000] w-auto h-screen opacity-100"
         src={background}
-        alt="Description of your image"
+        alt="Strawberry fields forever"
+        priority
       />
       <div className="fixed top-0 left-0 h-full w-full bg-gradient-to-r from-[#d2cabd] to-transparent opacity-100 z-[-10]" />
     </div>
