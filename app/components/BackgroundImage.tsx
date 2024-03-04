@@ -1,5 +1,5 @@
 import Image from "next/image";
-import background from "@/public/background.jpg";
+import background from "@/public/background-2.jpg";
 
 const BackgroundImage = () => {
   return (

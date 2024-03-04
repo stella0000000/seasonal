@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { Seasons } from "@/types/types";
-import { Produce } from "./components/Produce";
-import Description from "./components/Description";
-import { Footer } from "./components/Footer";
+import Providers from "./components/Providers";
 import { ProduceNav } from "./components/ProduceNav";
 import { SeasonNav } from "./components/SeasonNav";
-import Providers from "./components/Providers";
+import { Produce } from "./components/Produce";
+import Description from "./components/Description";
 import BackgroundImage from "./components/BackgroundImage";
+import { Footer } from "./components/Footer";
 // import Photo from "./components/Photo";
 
 export default function Home() {
@@ -43,9 +43,6 @@ export default function Home() {
 }
 
 // loading state / useMutation
-// image api
-// transparent bg
 // mobile
-
-// fix error handling
-// fix types
+// check error handling
+// check types
