@@ -1,35 +1,26 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext } from "react";
 import { producePrompt } from "../helpers/constants/produce-prompt";
 import { DescriptionsContext } from "../context/description";
-import { Seasons } from "@/types/types";
-import { genId } from "../lib/utils";
 
 interface ProduceItemButtonPropsTypes {
-  value: string;
-  season: Seasons | null;
+  produceName: string;
   selectedProduce: string | null;
   setSelectedProduce: (produceName: string) => void;
   setDescription: (text: string) => void;
 }
 
 export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
-  value,
-  season,
+  produceName,
   selectedProduce,
   setSelectedProduce,
   setDescription,
 }) => {
-  const {
-    descriptions,
-    addDescription,
-    updateDescription,
-    setIsDescriptionUpdating,
-  } = useContext(DescriptionsContext);
+  const { descriptions, updateDescription, setIsDescriptionUpdating } =
+    useContext(DescriptionsContext);
 
-  const prompt = producePrompt(value);
-  const id: string = genId(season!, value);
+  const prompt = producePrompt(produceName);
 
   const { mutate } = useMutation({
     mutationFn: async () => {
@@ -63,14 +54,13 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
         const chunk = decoder.decode(value);
-        updateDescription(id, (prevText) => {
-          console.log({ prevText, chunk });
+        updateDescription(produceName!, (prevText) => {
           return prevText + chunk;
         });
       }
 
       setIsDescriptionUpdating(false);
-      setSelectedProduce(value);
+      setSelectedProduce(produceName);
       // addDescription(id, description); // Add full description to context
     },
     onMutate: () => {
@@ -83,21 +73,19 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
 
   const handleClick = () => {
     setDescription("");
-    setSelectedProduce(value);
-    if (!descriptions[id]) {
-      mutate();
-    }
+    setSelectedProduce(produceName);
+    if (!descriptions[produceName]) mutate();
   };
 
   const buttonColor =
-    selectedProduce === value ? "text-[#ff2da7]" : "text-black";
+    selectedProduce === produceName ? "text-[#ff2da7]" : "text-black";
 
   return (
     <button
       className={`${buttonColor} hover:text-[#ff2da7]`}
       onClick={handleClick}
     >
-      {value}
+      {produceName}
     </button>
   );
 };

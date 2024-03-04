@@ -54,14 +54,14 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
             // console.log({ json });
             const text = json.choices[0].delta?.content || "";
             if (counter < 2 && (text.match(/\n/) || []).length) {
-              // this is a prefix character (i.e., "\n\n"), do nothing
+              // prefix character (i.e., "\n\n"), do nothing
               return;
             }
             const queue = encoder.encode(text);
             controller.enqueue(queue);
             counter++;
           } catch (e) {
-            // maybe parse error
+            // fix error parsing
             controller.error(e);
           }
         }

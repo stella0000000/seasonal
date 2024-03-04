@@ -15,7 +15,7 @@ export function ProduceNav({
       {Object.values(Produces).map((produceItem, idx) => (
         <ProduceButton
           key={idx}
-          value={produceItem}
+          produceName={produceItem}
           {...{ setSelectedProduce, setDescription }}
         />
       ))}

@@ -6,7 +6,7 @@ export function Footer() {
   const openaiURL = "https://platform.openai.com/docs/models/gpt-3-5-turbo";
 
   return (
-    <div className="fixed bottom-0 right-0 p-2 text-xs text-right text-[#737373]">
+    <span className="fixed bottom-0 right-0 p-2 text-xs text-right text-[white]">
       Produce data provided by{" "}
       <Link
         className="cursor-default"
@@ -26,6 +26,6 @@ export function Footer() {
         OpenAI
       </Link>
       .
-    </div>
+    </span>
   );
 }

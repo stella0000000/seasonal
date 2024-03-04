@@ -7,10 +7,10 @@ export interface Description {
 export const DescriptionsContext = createContext<{
   descriptions: { [key: string]: string };
   isDescriptionUpdating: boolean;
-  addDescription: (id: string, description: string) => void;
-  removeDescription: (id: string) => void;
+  addDescription: (produceName: string, description: string) => void;
+  removeDescription: (produceName: string) => void;
   updateDescription: (
-    id: string,
+    produceName: string,
     updateFn: (prevText: string) => string
   ) => void;
   setIsDescriptionUpdating: (isUpdating: boolean) => void;
@@ -30,24 +30,24 @@ export function DescriptionsProvider({ children }: { children: ReactNode }) {
     [key: string]: string;
   }>({});
 
-  const addDescription = (id: string, description: string) => {
-    setDescriptions((prev) => ({ ...prev, [id]: description }));
+  const addDescription = (produceName: string, description: string) => {
+    setDescriptions((prev) => ({ ...prev, [produceName]: description }));
   };
 
-  const removeDescription = (id: string) => {
+  const removeDescription = (produceName: string) => {
     setDescriptions((prev) => {
-      const { [id]: _, ...rest } = prev;
+      const { [produceName]: _, ...rest } = prev;
       return rest;
     });
   };
 
   const updateDescription = (
-    id: string,
+    produceName: string,
     updateFn: (prevText: string) => string
   ) => {
     setDescriptions((prev) => {
-      const currentText = prev[id] || ""; // Get the current description text or an empty string if it doesn't exist
-      return { ...prev, [id]: updateFn(currentText) }; // Pass the current text to updateFn
+      const currentText = prev[produceName] || "";
+      return { ...prev, [produceName]: updateFn(currentText) };
     });
   };
 

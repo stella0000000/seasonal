@@ -49,3 +49,17 @@ button {
   width: 0; /* Remove scrollbar space */
   background: transparent; /* Optional: just make scrollbar invisible */
 }
+
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  span {
+    display: none;
+  }
+}

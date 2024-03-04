@@ -19,7 +19,7 @@ export function SeasonNav({
       {Object.values(Seasons).map((seasonItem, idx) => (
         <SeasonButton
           key={idx}
-          value={seasonItem}
+          seasonName={seasonItem}
           {...{ season, setSeason, setSelectedProduce, setDescription }}
         />
       ))}

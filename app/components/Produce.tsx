@@ -49,24 +49,20 @@ export const Produce: React.FC<ProducePropsTypes> = ({
   setDescription,
 }: ProducePropsTypes) => {
   const { produceType } = useProduceContext();
-
   const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
     variables: { season: season?.toLowerCase() },
   });
 
-  const style = "mt-20";
-
-  // if (loading) return <div className={style}>...</div>;
   if (loading) return <Loading />;
-  if (error) return <div className={style}>Error: {error.message}</div>;
+  if (error) return <div className="mt-20">Error: {error.message}</div>;
   const produceItems = data[`${produceType!.toLowerCase()}BySeason`];
 
   return (
-    <ul className={style}>
+    <ul className="mt-20">
       {produceItems.map((item: Fruit | Vegetable) => (
         <li key={item.id}>
           <ProduceItemButton
-            value={capitalize(item.name)}
+            produceName={capitalize(item.name)}
             {...{ season, selectedProduce, setSelectedProduce, setDescription }}
           />
         </li>
