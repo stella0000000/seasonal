@@ -1,5 +1,7 @@
 import { useProduceContext } from "@/app/context/produce";
 import { Seasons } from "@/types/types";
+import { useContext } from "react";
+import { DescriptionsContext } from "../context/description";
 
 interface SeasonButtonProps {
   seasonName: string;
@@ -17,6 +19,7 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
   setDescription,
 }) => {
   const { produceType } = useProduceContext();
+  const { isDescriptionUpdating } = useContext(DescriptionsContext);
 
   const handleClick = () => {
     setSeason(seasonName as Seasons);
@@ -32,7 +35,7 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
         produceType && "hover:text-[#ff2da7]"
       }`}
       onClick={handleClick}
-      disabled={!produceType}
+      disabled={!produceType && isDescriptionUpdating}
     >
       {seasonName}
     </button>

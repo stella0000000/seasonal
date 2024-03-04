@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <Providers>
       <main className="flex min-h-screen flex-col p-2">
-        <h1 className="text-4xl fixed right-0 transform rotate-90 flex justify-center items-center h-screen mr-[-40px]">
+        <h1 className="text-4xl fixed right-0 transform rotate-90 flex justify-center items-center h-screen mr-[-40px] hidden">
           Seasonal
         </h1>
         <div className="fixed">

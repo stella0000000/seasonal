@@ -12,7 +12,7 @@ const Description: React.FC<DescriptionPropsTypes> = ({
   const { descriptions } = useContext(DescriptionsContext);
 
   const style =
-    "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center whitespace-pre-line";
+    "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center whitespace-pre-line";
 
   return (
     descriptions[selectedProduce!] && (

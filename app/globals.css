@@ -52,10 +52,10 @@ button {
 
 @media (max-width: 640px) {
   body {
-    font-size: 15px;
+    font-size: 12px;
   }
 
-  h1 {
+  .mobile-hidden {
     display: none;
   }
 

@@ -1,5 +1,7 @@
 import { Produces } from "@/types/types";
 import { useProduceContext } from "@/app/context/produce";
+import { useContext } from "react";
+import { DescriptionsContext } from "../context/description";
 
 interface ProduceButtonTypes {
   produceName: Produces;
@@ -13,6 +15,7 @@ export const ProduceButton: React.FC<ProduceButtonTypes> = ({
   setDescription,
 }) => {
   const { produceType, setProduceType } = useProduceContext();
+  const { isDescriptionUpdating } = useContext(DescriptionsContext);
 
   const handleClick = () => {
     setProduceType(produceName);
@@ -27,6 +30,7 @@ export const ProduceButton: React.FC<ProduceButtonTypes> = ({
     <button
       className={`${buttonColor} hover:text-[#ff2da7]`}
       onClick={handleClick}
+      disabled={isDescriptionUpdating}
     >
       {produceName}
     </button>
