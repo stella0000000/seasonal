@@ -24,12 +24,12 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
     setDescription("");
   };
 
-  const buttonColor = season === value ? "text-[#c7ff2d]" : "text-black";
+  const buttonColor = season === value ? "text-[#ff2da7]" : "text-black";
 
   return (
     <button
       className={`${buttonColor} ${!produceType && "opacity-30"} ${
-        produceType && "hover:text-[#c7ff2d]"
+        produceType && "hover:text-[#ff2da7]"
       }`}
       onClick={handleClick}
       disabled={!produceType}

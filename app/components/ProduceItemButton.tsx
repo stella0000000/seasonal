@@ -71,11 +71,11 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   };
 
   const buttonColor =
-    selectedProduce === value ? "text-[#c7ff2d]" : "text-black";
+    selectedProduce === value ? "text-[#ff2da7]" : "text-black";
 
   return (
     <button
-      className={`${buttonColor} hover:text-[#c7ff2d]`}
+      className={`${buttonColor} hover:text-[#ff2da7]`}
       onClick={handleClick}
     >
       {value}
