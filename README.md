@@ -1,8 +1,8 @@
 ## Seasonal
 
 A full stack web application for seasonal fruits and vegetables.
-  
-<img width="700" alt="Screenshot 2024-03-04 at 4 09 00 PM" src="https://github.com/stella0000000/seasonal/assets/112890821/4d828239-fbe3-4eaa-8e81-5aaa6f7c3d0f">
+
+<img width="700" alt="Screenshot 2024-03-04 at 4 20 47 PM" src="https://github.com/stella0000000/seasonal/assets/112890821/54529d06-f370-4d90-a623-b634a3f98020">
 
 
 ## Features
