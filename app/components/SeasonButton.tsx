@@ -5,20 +5,23 @@ interface SeasonButtonProps {
   value: string;
   season: Seasons | null;
   setSeason: (season: Seasons) => void;
-  setDescription: (description: string | null) => void;
+  setSelectedProduce: (produceName: string | null) => void;
+  setDescription: (description: string) => void;
 }
 
 const SeasonButton: React.FC<SeasonButtonProps> = ({
   value,
   season,
   setSeason,
+  setSelectedProduce,
   setDescription,
 }) => {
   const { produceType } = useProduceContext();
 
   const handleClick = () => {
     setSeason(value as Seasons);
-    setDescription(null);
+    setSelectedProduce(null);
+    setDescription("");
   };
 
   const buttonColor = season === value ? "text-[#c7ff2d]" : "text-black";

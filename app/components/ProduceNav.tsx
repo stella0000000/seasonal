@@ -2,14 +2,22 @@ import { Produces } from "@/types/types";
 import ProduceButton from "./ProduceButton";
 
 interface ProduceNavPropsTypes {
-  setDescription: (description: string | null) => void;
+  setSelectedProduce: (produceName: string | null) => void;
+  setDescription: (description: string) => void;
 }
 
-export function ProduceNav({ setDescription }: ProduceNavPropsTypes) {
+export function ProduceNav({
+  setSelectedProduce,
+  setDescription,
+}: ProduceNavPropsTypes) {
   return (
     <div className="flex gap-x-10">
-      {Object.values(Produces).map((produce, idx) => (
-        <ProduceButton key={idx} value={produce} {...{ setDescription }} />
+      {Object.values(Produces).map((produceItem, idx) => (
+        <ProduceButton
+          key={idx}
+          value={produceItem}
+          {...{ setSelectedProduce, setDescription }}
+        />
       ))}
     </div>
   );

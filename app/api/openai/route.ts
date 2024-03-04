@@ -15,12 +15,12 @@
 
 //   const chatCompletion = await stream.finalChatCompletion();
 //   // console.log(chatCompletion.choices[0].message.content); // {id: "…", choices: […], …}
-
-//   return new Response(chatCompletion as any);
+//   // chatCompletion.choices[0].message.content;
+//   console.log({ chatCompletion });
+//   return new Response(chatCompletion.choices[0].message.content as any);
 // }
 
 import { NextResponse, NextRequest } from "next/server";
-// import { openai } from "@/lib/openai";
 import { OpenAIStream, OpenAIStreamPayload } from "@/lib/openai-stream";
 
 export async function POST(req: NextRequest, resp: NextResponse) {
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest, resp: NextResponse) {
   };
 
   const stream = await OpenAIStream(payload);
-  console.log({ stream });
+  // console.log({ stream });
   return new Response(stream);
 }
 

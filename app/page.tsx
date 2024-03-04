@@ -8,11 +8,12 @@ import { Footer } from "@/app/components/Footer";
 import { ProduceNav } from "@/app/components/ProduceNav";
 import { SeasonNav } from "@/app/components/SeasonNav";
 import Providers from "@/app/components/Providers";
-// import Photo from "@/components/Photo";
+// import Photo from "@/app/components/Photo";
 
 export default function Home() {
   const [season, setSeason] = useState<Seasons | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
+  const [selectedProduce, setSelectedProduce] = useState<string | null>(null);
+  const [description, setDescription] = useState<string>();
 
   return (
     <Providers>
@@ -22,19 +23,24 @@ export default function Home() {
         </h1>
         {/* <Photo /> */}
         <div className="fixed">
-          <ProduceNav {...{ setDescription }} />
-          <SeasonNav {...{ season, setSeason, setDescription }} />
+          <ProduceNav {...{ setSelectedProduce, setDescription }} />
+          <SeasonNav
+            {...{ season, setSeason, setSelectedProduce, setDescription }}
+          />
         </div>
-        {season && <Produce {...{ season, setDescription }} />}
-        {description && <Description {...{ description }} />}
+        {season && (
+          <Produce
+            {...{ season, selectedProduce, setSelectedProduce, setDescription }}
+          />
+        )}
+        <Description {...{ description, season, selectedProduce }} />
         <Footer />
       </main>
     </Providers>
   );
 }
 
-// readable stream
-// define Description interface
+// fix frontend stream w. descriptions context
 // loading state / useMutation
 // caching for previous requests?
 

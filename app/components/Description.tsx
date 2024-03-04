@@ -1,21 +1,29 @@
 import { useContext } from "react";
 import { DescriptionsContext } from "../context/description";
+import { Seasons } from "@/types/types";
+import { genId } from "../lib/utils";
 
 interface DescriptionPropsTypes {
-  description: string | null;
+  season: Seasons | null;
+  selectedProduce: string | null;
 }
 
 const Description: React.FC<DescriptionPropsTypes> = ({
-  description,
+  season,
+  selectedProduce,
 }: DescriptionPropsTypes) => {
   const { descriptions } = useContext(DescriptionsContext);
 
-  console.log({ descriptions });
+  const id: string = genId(season!, selectedProduce!);
+
+  // console.log({ id });
+  console.log({ descriptions }, descriptions[id]);
+  // console.log({ descriptions });
 
   const style =
     "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center whitespace-pre-line";
 
-  return <p className={style}>{description!}</p>;
+  return descriptions[id] && <p className={style}>{`${descriptions[id]}`}</p>;
 };
 
 export default Description;

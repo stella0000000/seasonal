@@ -1,14 +1,14 @@
 import { gql, useQuery } from "@apollo/client";
 import type { Fruit, Vegetable } from "@prisma/client";
 import { Produces, Seasons } from "@/types/types";
-
 import { useProduceContext } from "@/app/context/produce";
 import ProduceItemButton from "./ProduceItemButton";
-import { useState } from "react";
 import Loading from "./Loading";
 
 interface ProducePropsTypes {
   season: Seasons | null;
+  selectedProduce: string | null;
+  setSelectedProduce: (produceName: string | null) => void;
   setDescription: (description: string) => void;
 }
 
@@ -44,10 +44,11 @@ const capitalize = (word: string) => {
 
 export const Produce: React.FC<ProducePropsTypes> = ({
   season,
+  selectedProduce,
+  setSelectedProduce,
   setDescription,
 }: ProducePropsTypes) => {
   const { produceType } = useProduceContext();
-  const [selectedProduce, setSelectedProduce] = useState<string | null>(null);
 
   const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
     variables: { season: season?.toLowerCase() },

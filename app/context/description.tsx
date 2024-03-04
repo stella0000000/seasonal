@@ -1,15 +1,13 @@
 import { ReactNode, createContext, useState } from "react";
 
 export interface Description {
-  id: string;
-  text: string;
+  [key: string]: string;
 }
 
 export const DescriptionsContext = createContext<{
-  descriptions: Description[];
+  descriptions: { [key: string]: string };
   isDescriptionUpdating: boolean;
-  // description from openai
-  addDescription: (description: Description) => void;
+  addDescription: (id: string, description: string) => void;
   removeDescription: (id: string) => void;
   updateDescription: (
     id: string,
@@ -17,7 +15,7 @@ export const DescriptionsContext = createContext<{
   ) => void;
   setIsDescriptionUpdating: (isUpdating: boolean) => void;
 }>({
-  descriptions: [],
+  descriptions: {},
   isDescriptionUpdating: false,
   addDescription: () => {},
   removeDescription: () => {},
@@ -28,31 +26,30 @@ export const DescriptionsContext = createContext<{
 export function DescriptionsProvider({ children }: { children: ReactNode }) {
   const [isDescriptionUpdating, setIsDescriptionUpdating] =
     useState<boolean>(false);
-  const [descriptions, setDescriptions] = useState<Description[]>([]);
+  const [descriptions, setDescriptions] = useState<{
+    [key: string]: string;
+  }>({});
 
-  const addDescription = (description: Description) => {
-    setDescriptions((prev) => [...prev, description]);
+  const addDescription = (id: string, description: string) => {
+    setDescriptions((prev) => ({ ...prev, [id]: description }));
   };
 
   const removeDescription = (id: string) => {
-    setDescriptions((prev) =>
-      prev.filter((description) => description.id !== id)
-    );
+    setDescriptions((prev) => {
+      const { [id]: _, ...rest } = prev;
+      return rest;
+    });
   };
 
   const updateDescription = (
     id: string,
     updateFn: (prevText: string) => string
   ) => {
-    setDescriptions((prev) =>
-      prev.map((description) => {
-        if (description.id === id) {
-          return { ...description, text: updateFn(description.text) };
-        }
-
-        return description;
-      })
-    );
+    setDescriptions((prev) => {
+      // console.log({ prev });
+      console.log(prev[id]);
+      return { ...prev, [id]: updateFn(prev.id) };
+    });
   };
 
   return (

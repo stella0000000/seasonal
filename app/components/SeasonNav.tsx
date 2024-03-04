@@ -4,12 +4,14 @@ import SeasonButton from "./SeasonButton";
 interface SeasonNavPropsTypes {
   season: Seasons | null;
   setSeason: (season: Seasons) => void;
-  setDescription: (description: string | null) => void;
+  setSelectedProduce: (produceName: string | null) => void;
+  setDescription: (description: string) => void;
 }
 
 export function SeasonNav({
   season,
   setSeason,
+  setSelectedProduce,
   setDescription,
 }: SeasonNavPropsTypes) {
   return (
@@ -18,7 +20,7 @@ export function SeasonNav({
         <SeasonButton
           key={idx}
           value={seasonItem}
-          {...{ season, setSeason, setDescription }}
+          {...{ season, setSeason, setSelectedProduce, setDescription }}
         />
       ))}
     </div>

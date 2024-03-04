@@ -1,7 +1,7 @@
 import { openai } from "@/lib/openai";
 
-const Image = () => {
-  const generateImage = async () => {
+const Photo = () => {
+  const generatePhoto = async () => {
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: "a fresh pear with transparent background",
@@ -11,7 +11,7 @@ const Image = () => {
     console.log({ response });
   };
 
-  return <button onClick={generateImage}>gen image</button>;
+  return <button onClick={generatePhoto}>gen Photo</button>;
 };
 
-export default Image;
+export default Photo;
