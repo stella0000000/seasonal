@@ -17,8 +17,12 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   setSelectedProduce,
   setDescription,
 }) => {
-  const { descriptions, updateDescription, setIsDescriptionUpdating } =
-    useContext(DescriptionsContext);
+  const {
+    descriptions,
+    updateDescription,
+    isDescriptionUpdating,
+    setIsDescriptionUpdating,
+  } = useContext(DescriptionsContext);
 
   const prompt = producePrompt(produceName);
 
@@ -72,8 +76,10 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   });
 
   const handleClick = () => {
-    setDescription("");
-    setSelectedProduce(produceName);
+    if (!isDescriptionUpdating) {
+      setDescription("");
+      setSelectedProduce(produceName);
+    }
     if (!descriptions[produceName]) mutate();
   };
 
