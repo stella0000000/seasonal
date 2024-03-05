@@ -22,9 +22,11 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
   const { isDescriptionUpdating } = useContext(DescriptionsContext);
 
   const handleClick = () => {
-    setSeason(seasonName as Seasons);
-    setSelectedProduce(null);
-    setDescription("");
+    if (produceType) {
+      setSeason(seasonName as Seasons);
+      setSelectedProduce(null);
+      setDescription("");
+    }
   };
 
   const buttonColor = season === seasonName ? "text-[#ff2da7]" : "text-black";
@@ -34,8 +36,8 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
       className={`${buttonColor} ${!produceType && "opacity-30"} ${
         produceType && "hover:text-[#ff2da7]"
       }`}
-      onClick={handleClick}
       disabled={!produceType && isDescriptionUpdating}
+      onClick={handleClick}
     >
       {seasonName}
     </button>
