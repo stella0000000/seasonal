@@ -6,13 +6,13 @@ import { DescriptionsContext } from "../context/description";
 interface ProduceButtonTypes {
   produceName: Produces;
   setSelectedProduce: (produceName: string | null) => void;
-  setDescription: (description: string) => void;
+  // setDescription: (description: string) => void;
 }
 
 export const ProduceButton: React.FC<ProduceButtonTypes> = ({
   produceName,
   setSelectedProduce,
-  setDescription,
+  // setDescription,
 }) => {
   const { produceType, setProduceType } = useProduceContext();
   const { isDescriptionUpdating } = useContext(DescriptionsContext);
@@ -20,7 +20,7 @@ export const ProduceButton: React.FC<ProduceButtonTypes> = ({
   const handleClick = () => {
     setProduceType(produceName);
     setSelectedProduce(null);
-    setDescription("");
+    // setDescription("");
   };
 
   const buttonColor =

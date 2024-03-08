@@ -8,14 +8,12 @@ interface ProduceItemButtonPropsTypes {
   produceName: string;
   selectedProduce: string | null;
   setSelectedProduce: (produceName: string) => void;
-  setDescription: (text: string) => void;
 }
 
 export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
   produceName,
   selectedProduce,
   setSelectedProduce,
-  setDescription,
 }) => {
   const {
     descriptions,
@@ -77,7 +75,6 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
 
   const handleClick = () => {
     if (!isDescriptionUpdating) {
-      setDescription("");
       setSelectedProduce(produceName);
     }
     if (!descriptions[produceName]) mutate();

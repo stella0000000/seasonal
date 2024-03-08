@@ -5,14 +5,12 @@ interface SeasonNavPropsTypes {
   season: Seasons | null;
   setSeason: (season: Seasons) => void;
   setSelectedProduce: (produceName: string | null) => void;
-  setDescription: (description: string) => void;
 }
 
 export function SeasonNav({
   season,
   setSeason,
   setSelectedProduce,
-  setDescription,
 }: SeasonNavPropsTypes) {
   return (
     <div className="flex gap-x-10">
@@ -20,7 +18,7 @@ export function SeasonNav({
         <SeasonButton
           key={idx}
           seasonName={seasonItem}
-          {...{ season, setSeason, setSelectedProduce, setDescription }}
+          {...{ season, setSeason, setSelectedProduce }}
         />
       ))}
     </div>

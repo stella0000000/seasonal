@@ -14,7 +14,6 @@ import { Footer } from "./components/Footer";
 export default function Home() {
   const [season, setSeason] = useState<Seasons | null>(null);
   const [selectedProduce, setSelectedProduce] = useState<string | null>(null);
-  const [description, setDescription] = useState<string>();
 
   return (
     <Providers>
@@ -24,17 +23,13 @@ export default function Home() {
         </h1>
         <div className="fixed">
           {/* <Photo /> */}
-          <ProduceNav {...{ setSelectedProduce, setDescription }} />
-          <SeasonNav
-            {...{ season, setSeason, setSelectedProduce, setDescription }}
-          />
+          <ProduceNav {...{ setSelectedProduce }} />
+          <SeasonNav {...{ season, setSeason, setSelectedProduce }} />
         </div>
         {season && (
-          <Produce
-            {...{ season, selectedProduce, setSelectedProduce, setDescription }}
-          />
+          <Produce {...{ season, selectedProduce, setSelectedProduce }} />
         )}
-        <Description {...{ description, season, selectedProduce }} />
+        <Description {...{ selectedProduce }} />
         <BackgroundImage />
         <Footer />
       </main>

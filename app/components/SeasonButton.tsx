@@ -8,7 +8,6 @@ interface SeasonButtonProps {
   season: Seasons | null;
   setSeason: (season: Seasons) => void;
   setSelectedProduce: (produceName: string | null) => void;
-  setDescription: (description: string) => void;
 }
 
 const SeasonButton: React.FC<SeasonButtonProps> = ({
@@ -16,7 +15,6 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
   season,
   setSeason,
   setSelectedProduce,
-  setDescription,
 }) => {
   const { produceType } = useProduceContext();
   const { isDescriptionUpdating } = useContext(DescriptionsContext);
@@ -25,7 +23,6 @@ const SeasonButton: React.FC<SeasonButtonProps> = ({
     if (produceType) {
       setSeason(seasonName as Seasons);
       setSelectedProduce(null);
-      setDescription("");
     }
   };
 

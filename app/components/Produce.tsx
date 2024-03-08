@@ -9,7 +9,6 @@ interface ProducePropsTypes {
   season: Seasons | null;
   selectedProduce: string | null;
   setSelectedProduce: (produceName: string | null) => void;
-  setDescription: (description: string) => void;
 }
 
 const FRUITS_BY_SEASON = gql`
@@ -46,7 +45,6 @@ export const Produce: React.FC<ProducePropsTypes> = ({
   season,
   selectedProduce,
   setSelectedProduce,
-  setDescription,
 }: ProducePropsTypes) => {
   const { produceType } = useProduceContext();
   const { loading, error, data } = useQuery(queryMap[produceType as Produces], {
@@ -63,7 +61,7 @@ export const Produce: React.FC<ProducePropsTypes> = ({
         <li key={item.id}>
           <ProduceItemButton
             produceName={capitalize(item.name)}
-            {...{ season, selectedProduce, setSelectedProduce, setDescription }}
+            {...{ season, selectedProduce, setSelectedProduce }}
           />
         </li>
       ))}
