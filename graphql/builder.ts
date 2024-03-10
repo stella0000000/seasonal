@@ -2,13 +2,13 @@
 
 import SchemaBuilder from "@pothos/core";
 import PrismaPlugin from "@pothos/plugin-prisma";
-import type PrismaTypes from "@pothos/plugin-prisma/generated";
+// import type PrismaTypes from "@pothos/plugin-prisma/generated"; // fix
 import prisma from "@/lib/prisma";
 
 // Schema builder
 export const builder = new SchemaBuilder<{
   // Static types used to create gql schema
-  PrismaTypes: PrismaTypes;
+  PrismaTypes: any; // fix
 }>({
   // options for SchemaBuilder
   plugins: [PrismaPlugin],
