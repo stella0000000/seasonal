@@ -36,8 +36,9 @@ export function DescriptionsProvider({ children }: { children: ReactNode }) {
 
   const removeDescription = (produceName: string) => {
     setDescriptions((prev) => {
-      const { [produceName]: _, ...rest } = prev;
-      return rest;
+      const curr = { ...prev };
+      delete curr[produceName];
+      return curr;
     });
   };
 

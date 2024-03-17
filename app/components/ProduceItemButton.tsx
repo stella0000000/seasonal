@@ -21,7 +21,6 @@ export const ProduceItemButton: FC<ProduceItemButtonPropsTypes> = ({
     isDescriptionUpdating,
     setIsDescriptionUpdating,
   } = useContext(DescriptionsContext);
-
   const prompt = producePrompt(produceName);
 
   const { mutate } = useMutation({
