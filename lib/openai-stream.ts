@@ -1,3 +1,5 @@
+// tutorial: https://www.youtube.com/watch?v=KiWClrSVgfU
+
 import {
   ParsedEvent,
   ReconnectInterval,
