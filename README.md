@@ -1,6 +1,6 @@
 ## Seasonal
 
-A full stack web application dedicated to seasonal fruits and vegetables.
+A full stack web application dedicated to seasonal fruits and vegetables. I wanted to get a taste of GraphQL and integrating the OpenAI API to learn about AI frontend development.
 
 <img width="700" alt="Screenshot 2024-03-06 at 10 06 23 PM" src="https://github.com/stella0000000/seasonal/assets/112890821/a1d8aa89-b2b1-4b7b-af92-fff1975f5e30">
 
@@ -24,4 +24,5 @@ A full stack web application dedicated to seasonal fruits and vegetables.
 
 ## References
 
-Seasonal fruit and vegetable data provided by the [USDA](https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide).
+- Seasonal fruit and vegetable data provided by the [USDA](https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide).
+- [tutorial](https://www.youtube.com/watch?v=KiWClrSVgfU)
