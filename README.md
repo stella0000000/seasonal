@@ -1,6 +1,6 @@
 ## Seasonal
 
-A full stack web application dedicated to seasonal fruits and vegetables. I wanted to get a taste of GraphQL and integrating the OpenAI API to learn about AI frontend development.
+A full stack web application dedicated to seasonal fruits and vegetables. I wanted to get a taste of GraphQL and learn about AI frontend development.
 
 <img width="700" alt="Screenshot 2024-03-06 at 10 06 23 PM" src="https://github.com/stella0000000/seasonal/assets/112890821/a1d8aa89-b2b1-4b7b-af92-fff1975f5e30">
 
