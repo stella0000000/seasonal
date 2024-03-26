@@ -25,4 +25,4 @@ A full stack web application dedicated to seasonal fruits and vegetables. I want
 ## References
 
 - Seasonal fruit and vegetable data provided by the [USDA](https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide).
-- [tutorial](https://www.youtube.com/watch?v=KiWClrSVgfU)
+- [tutorial](https://www.youtube.com/watch?v=KiWClrSVgfU) for OpenAI API + Readable Stream.
